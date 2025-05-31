@@ -8,6 +8,21 @@ from scipy.stats import norm
 from scipy.optimize import brentq
 
 st.set_page_config(page_title="Implied Volatility Surface", layout="wide")
+# 📊 Implied Volatility Surface Analyzer
+st.markdown("""
+# 📊 Implied Volatility Surface Analyzer
+A live dashboard to explore volatility smiles, skews, and term structures for stock options using Black-Scholes IV models.
+
+---
+
+👤 **Created by:** Dr. Poulami Nandi | Physicist | Quant Researcher | Data Scientist  
+University of Pennsylvania | IIT Kanpur | IIT Gandhinagar | UC Davis | TU Wien  
+📧 **Email:** nandi.poulami91@gmail.com | pnandi@sas.upenn.edu  
+🔗 [LinkedIn](https://www.linkedin.com/in/poulami-nandi-a8a12917b/) • [GitHub](https://github.com/Poulami-Nandi) • [Google Scholar](https://scholar.google.co.in/citations?user=bOYJeAYAAAAJ&hl=en)  
+
+---
+""")
+
 
 # ----------------------------
 # Utility Functions
