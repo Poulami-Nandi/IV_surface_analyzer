@@ -88,7 +88,7 @@ if st.sidebar.button("Fetch and Analyze"):
     st.success(f"Data fetched for {ticker}. Spot Price: {spot_price:.2f}")
 
     if show_line:
-        st.subheader("📈 IV vs Strike for Different Expirations")
+        st.subheader("IV vs Strike for Different Expirations")
         fig1, ax1 = plt.subplots(figsize=(12, 6))
         for exp in filtered['expirationDate'].unique():
             subset = filtered[filtered['expirationDate'] == exp]
@@ -102,7 +102,7 @@ if st.sidebar.button("Fetch and Analyze"):
 
     if show_heatmap:
         selected_exp = st.selectbox("Select Expiration for Heatmap", options=filtered['expirationDate'].dt.date.unique())
-        st.subheader(f"🔥 IV Heatmap for {selected_exp}")
+        st.subheader(f"IV Heatmap for {selected_exp}")
         exp_filtered = filtered[filtered['expirationDate'].dt.date == selected_exp]
         if not exp_filtered.empty:
             heatmap_data = exp_filtered.pivot_table(
@@ -136,7 +136,7 @@ if st.sidebar.button("Fetch and Analyze"):
         st.pyplot(fig3)
 
     if show_box:
-        st.subheader("📦 IV Distribution by Expiration")
+        st.subheader("IV Distribution by Expiration")
         fig4, ax4 = plt.subplots(figsize=(12, 6))
         filtered['exp_str'] = filtered['expirationDate'].dt.strftime('%Y-%m-%d')
         sns.boxplot(x='exp_str', y='impliedVolatility', data=filtered, ax=ax4)
@@ -147,7 +147,7 @@ if st.sidebar.button("Fetch and Analyze"):
         st.pyplot(fig4)
 
     if show_moneyness:
-        st.subheader("⚖️ IV vs Moneyness (S/K)")
+        st.subheader("IV vs Moneyness (S/K)")
         fig5, ax5 = plt.subplots(figsize=(12, 6))
         sns.scatterplot(data=filtered, x='moneyness', y='impliedVolatility', hue='expirationDate', palette='tab10', ax=ax5)
         ax5.set_xlabel("Moneyness (S / K)")
