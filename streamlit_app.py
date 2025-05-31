@@ -91,10 +91,9 @@ if st.sidebar.button("Fetch and Analyze"):
     ax1.legend()
     st.pyplot(fig1)
 
-    # 🔥 Enhanced Heatmap for Selected Expiration
+    # 🔥 Heatmap with reduced tick clutter
     selected_exp = st.selectbox("Select Expiration for Heatmap", options=filtered['expirationDate'].dt.date.unique())
     st.subheader(f"🔥 IV Heatmap for {selected_exp}")
-
     exp_filtered = filtered[filtered['expirationDate'].dt.date == selected_exp]
 
     if not exp_filtered.empty:
@@ -109,23 +108,26 @@ if st.sidebar.button("Fetch and Analyze"):
             fig2, ax2 = plt.subplots(figsize=(14, 4))
             sns.heatmap(
                 heatmap_data,
-                annot=True,
+                annot=False,
                 fmt=".2f",
                 cmap='YlGnBu',
                 linewidths=0.3,
                 cbar=True,
-                annot_kws={"size": 8},
                 ax=ax2
             )
             ax2.set_xlabel("Strike Price")
             ax2.set_ylabel("")
             ax2.set_title(f"Implied Volatility Heatmap - {selected_exp}")
-            plt.xticks(rotation=45)
+            xticks = ax2.get_xticks()
+            xticklabels = [label.get_text() for label in ax2.get_xticklabels()]
+            # Reduce label clutter by only showing every 3rd label
+            ax2.set_xticks(xticks[::3])
+            ax2.set_xticklabels(xticklabels[::3], rotation=45)
             st.pyplot(fig2)
     else:
         st.warning("No data available for the selected expiration.")
 
-    # Plot: IV vs Time to Expiry for multiple strikes
+    # Plot: IV vs Time to Expiry
     st.subheader("🕒 IV vs Time to Expiry for Selected Strikes")
     fig3, ax3 = plt.subplots(figsize=(12, 6))
     top_strikes = sorted(filtered['strike'].unique())[:5]
@@ -139,7 +141,7 @@ if st.sidebar.button("Fetch and Analyze"):
     ax3.grid(True)
     st.pyplot(fig3)
 
-    # Boxplot: IV distribution by expiration
+    # Plot: Boxplot
     st.subheader("📦 IV Distribution by Expiration")
     fig4, ax4 = plt.subplots(figsize=(12, 6))
     filtered['exp_str'] = filtered['expirationDate'].dt.strftime('%Y-%m-%d')
