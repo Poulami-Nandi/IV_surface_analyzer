@@ -12,7 +12,7 @@ st.set_page_config(page_title="Implied Volatility Surface", layout="wide")
 st.markdown("""
 <style>
 .big-font {
-    font-size:36px !important;
+    font-size: 36px !important;
     font-weight: bold;
 }
 .banner {
@@ -32,20 +32,20 @@ a {
     <div class='big-font'>📊 Implied Volatility Surface Analyzer</div>
     <p>A live dashboard to explore volatility smiles, skews, and term structures for stock options using Black-Scholes IV models.</p>
 
-    <p>👤 <b>Created by:</b> <i>Dr. Poulami Nandi</i> | Physicist | Quant Researcher | Data Scientist</p>
-    <p><b>Affiliations:</b> University of Pennsylvania | IIT Kanpur | IIT Gandhinagar | UC Davis | TU Wien</p>
-    
-    <p>📧 <b>Email:</b> <a href="mailto:nandi.poulami91@gmail.com">nandi.poulami91@gmail.com</a> |
+    <p>🧑‍🔬 <b>Created by:</b> <i>Dr. Poulami Nandi</i> &nbsp; | &nbsp; Physicist · Quant Researcher · Data Scientist</p>
+
+    <p><b>Affiliations:</b> University of Pennsylvania &nbsp; | &nbsp; IIT Kanpur &nbsp; | &nbsp; IIT Gandhinagar &nbsp; | &nbsp; UC Davis &nbsp; | &nbsp; TU Wien</p>
+
+    <p>📧 <b>Email:</b> 
+    <a href="mailto:nandi.poulami91@gmail.com">nandi.poulami91@gmail.com</a> &nbsp; | &nbsp;
     <a href="mailto:pnandi@sas.upenn.edu">pnandi@sas.upenn.edu</a></p>
 
     <p>🔗 <b>Links:</b> 
-    <a href="https://www.linkedin.com/in/poulami-nandi-a8a12917b/" target="_blank">LinkedIn</a> • 
-    <a href="https://github.com/Poulami-Nandi" target="_blank">GitHub</a> • 
+    <a href="https://www.linkedin.com/in/poulami-nandi-a8a12917b/" target="_blank">LinkedIn</a> &nbsp; | &nbsp;
+    <a href="https://github.com/Poulami-Nandi" target="_blank">GitHub</a> &nbsp; | &nbsp;
     <a href="https://scholar.google.co.in/citations?user=bOYJeAYAAAAJ&hl=en" target="_blank">Google Scholar</a></p>
 </div>
 """, unsafe_allow_html=True)
-
-
 
 # ----------------------------
 # Utility Functions
