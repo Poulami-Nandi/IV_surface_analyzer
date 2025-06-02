@@ -12,48 +12,33 @@ from scipy.optimize import brentq
 # ----------------------------
 st.set_page_config(page_title="Implied Volatility Surface", layout="wide")
 
-st.markdown("""
-<style>
-.big-font {
-    font-size: 36px !important;
-    font-weight: bold;
-}
-.banner {
-    padding: 1.2rem;
-    border-radius: 10px;
-    background-color: #111827;
-    color: white;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-a {
-    color: #1faaff;
-    text-decoration: none;
-}
-</style>
+st.title("📊 Implied Volatility Surface Analyzer")
 
-<div class='banner'>
-    <div class='big-font'>📊 Implied Volatility Surface Analyzer</div>
-    <p>
-        A live dashboard to explore volatility smiles, skews, and term structures for stock options using Black-Scholes IV models.
-    </p>
+st.markdown(
+    "A live dashboard to explore volatility smiles, skews, and term structures for stock options using Black-Scholes IV models."
+)
 
-    <p><b>👤 Created by:</b> <i>Dr. Poulami Nandi</i> | Physicist · Quant Researcher · Data Scientist</p>
+col1, col2 = st.columns([1, 3])
 
-    <p><b>🏛️ Affiliations:</b><br>
-    University of Pennsylvania · IIT Kanpur · IIT Gandhinagar · UC Davis · TU Wien</p>
+with col1:
+    st.image("https://img.icons8.com/color/96/graph.png", width=64)
 
-    <p><b>📧 Email:</b><br>
-    <a href="mailto:nandi.poulami91@gmail.com">nandi.poulami91@gmail.com</a><br>
-    <a href="mailto:pnandi@sas.upenn.edu">pnandi@sas.upenn.edu</a></p>
+with col2:
+    st.markdown("**👤 Created by:** Dr. Poulami Nandi  \n"
+                "Physicist · Quant Researcher · Data Scientist")
 
-    <p><b>🔗 Links:</b><br>
-    <a href="https://www.linkedin.com/in/poulami-nandi-a8a12917b/" target="_blank">LinkedIn</a> |
-    <a href="https://github.com/Poulami-Nandi" target="_blank">GitHub</a> |
-    <a href="https://scholar.google.co.in/citations?user=bOYJeAYAAAAJ&hl=en" target="_blank">Google Scholar</a>
-    </p>
-</div>
-""", unsafe_allow_html=True)
+    st.markdown("**🏛️ Affiliations:**  \n"
+                "University of Pennsylvania · IIT Kanpur · IIT Gandhinagar · UC Davis · TU Wien")
+
+    st.markdown("**📧 Email:**  \n"
+                "[nandi.poulami91@gmail.com](mailto:nandi.poulami91@gmail.com)  \n"
+                "[pnandi@sas.upenn.edu](mailto:pnandi@sas.upenn.edu)")
+
+    st.markdown("**🔗 Links:**  \n"
+                "[LinkedIn](https://www.linkedin.com/in/poulami-nandi-a8a12917b/)  |  "
+                "[GitHub](https://github.com/Poulami-Nandi)  |  "
+                "[Google Scholar](https://scholar.google.co.in/citations?user=bOYJeAYAAAAJ&hl=en)")
+
 
 # ----------------------------
 # Utility Functions
