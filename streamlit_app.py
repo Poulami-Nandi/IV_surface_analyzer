@@ -7,6 +7,9 @@ import seaborn as sns
 from scipy.stats import norm
 from scipy.optimize import brentq
 
+# ----------------------------
+# Page Config and Banner
+# ----------------------------
 st.set_page_config(page_title="Implied Volatility Surface", layout="wide")
 
 st.markdown("""
@@ -70,17 +73,20 @@ def get_option_chain(ticker, max_expirations=3):
     expirations = stock.options[:max_expirations]
     all_options = []
     for date in expirations:
-        chain = stock.option_chain(date)
-        calls = chain.calls.copy()
-        calls['expirationDate'] = date
-        calls['optionType'] = 'call'
-        puts = chain.puts.copy()
-        puts['expirationDate'] = date
-        puts['optionType'] = 'put'
-        all_options.extend([calls, puts])
-    df = pd.concat(all_options, axis=0)
-    df.reset_index(drop=True, inplace=True)
-    return df
+        try:
+            chain = stock.option_chain(date)
+            calls = chain.calls.copy()
+            calls['expirationDate'] = date
+            calls['optionType'] = 'call'
+            puts = chain.puts.copy()
+            puts['expirationDate'] = date
+            puts['optionType'] = 'put'
+            all_options.extend([calls, puts])
+        except Exception as e:
+            print(f"Warning: Could not fetch options for {date} – {e}")
+    if not all_options:
+        raise ValueError(f"No valid options data available for ticker '{ticker}'.")
+    return pd.concat(all_options, axis=0).reset_index(drop=True)
 
 def compute_iv(df, spot, r):
     df['expirationDate'] = pd.to_datetime(df['expirationDate'])
@@ -117,8 +123,13 @@ show_scatter = st.sidebar.checkbox("IV Scatter Plot", value=True)
 
 if st.sidebar.button("Fetch and Analyze"):
     with st.spinner("Fetching data and computing implied volatilities..."):
-        spot_price = yf.Ticker(ticker).history(period="1d")['Close'].iloc[-1]
-        chain_df = get_option_chain(ticker, max_exp)
+        try:
+            spot_price = yf.Ticker(ticker).history(period="1d")['Close'].iloc[-1]
+            chain_df = get_option_chain(ticker, max_exp)
+        except Exception as e:
+            st.error(f"❌ Error fetching data: {e}")
+            st.stop()
+
         iv_df = compute_iv(chain_df, spot_price, r)
         filtered = iv_df[(iv_df['optionType'] == option_type) & (iv_df['impliedVolatility'].notna())]
         filtered['moneyness'] = spot_price / filtered['strike']
@@ -126,7 +137,7 @@ if st.sidebar.button("Fetch and Analyze"):
     st.success(f"Data fetched for {ticker}. Spot Price: {spot_price:.2f}")
 
     if show_line:
-        st.subheader("IV vs Strike for Different Expirations")
+        st.subheader("📈 IV vs Strike for Different Expirations")
         fig1, ax1 = plt.subplots(figsize=(12, 6))
         for exp in filtered['expirationDate'].unique():
             subset = filtered[filtered['expirationDate'] == exp]
@@ -140,17 +151,14 @@ if st.sidebar.button("Fetch and Analyze"):
 
     if show_heatmap:
         selected_exp = st.selectbox("Select Expiration for Heatmap", options=filtered['expirationDate'].dt.date.unique())
-        st.subheader(f"IV Heatmap for {selected_exp}")
+        st.subheader(f"🔥 IV Heatmap for {selected_exp}")
         exp_filtered = filtered[filtered['expirationDate'].dt.date == selected_exp]
         if not exp_filtered.empty:
-            heatmap_data = exp_filtered.pivot_table(
-                index='expirationDate', columns='strike', values='impliedVolatility'
-            )
+            heatmap_data = exp_filtered.pivot_table(index='expirationDate', columns='strike', values='impliedVolatility')
             col1, col2, col3 = st.columns([0.1, 0.8, 0.1])
             with col2:
                 fig2, ax2 = plt.subplots(figsize=(14, 4))
-                sns.heatmap(heatmap_data, annot=False, fmt=".2f", cmap='YlGnBu',
-                            linewidths=0.3, cbar=True, ax=ax2)
+                sns.heatmap(heatmap_data, annot=False, fmt=".2f", cmap='YlGnBu', linewidths=0.3, cbar=True, ax=ax2)
                 ax2.set_xlabel("Strike Price")
                 ax2.set_title(f"Implied Volatility Heatmap - {selected_exp}")
                 xticks = ax2.get_xticks()
@@ -174,7 +182,7 @@ if st.sidebar.button("Fetch and Analyze"):
         st.pyplot(fig3)
 
     if show_box:
-        st.subheader("IV Distribution by Expiration")
+        st.subheader("📦 IV Distribution by Expiration")
         fig4, ax4 = plt.subplots(figsize=(12, 6))
         filtered['exp_str'] = filtered['expirationDate'].dt.strftime('%Y-%m-%d')
         sns.boxplot(x='exp_str', y='impliedVolatility', data=filtered, ax=ax4)
@@ -185,7 +193,7 @@ if st.sidebar.button("Fetch and Analyze"):
         st.pyplot(fig4)
 
     if show_moneyness:
-        st.subheader("IV vs Moneyness (S/K)")
+        st.subheader("⚖️ IV vs Moneyness (S/K)")
         fig5, ax5 = plt.subplots(figsize=(12, 6))
         sns.scatterplot(data=filtered, x='moneyness', y='impliedVolatility', hue='expirationDate', palette='tab10', ax=ax5)
         ax5.set_xlabel("Moneyness (S / K)")
@@ -197,13 +205,7 @@ if st.sidebar.button("Fetch and Analyze"):
     if show_scatter:
         st.subheader("🎯 IV vs Strike (Colored by Time to Expiry)")
         fig6, ax6 = plt.subplots(figsize=(12, 6))
-        scatter = ax6.scatter(
-            filtered['strike'],
-            filtered['impliedVolatility'],
-            c=filtered['T'],
-            cmap='coolwarm',
-            alpha=0.7
-        )
+        scatter = ax6.scatter(filtered['strike'], filtered['impliedVolatility'], c=filtered['T'], cmap='coolwarm', alpha=0.7)
         cbar = fig6.colorbar(scatter)
         cbar.set_label("Time to Expiry (Years)")
         ax6.set_xlabel("Strike Price")
