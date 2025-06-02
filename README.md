@@ -56,10 +56,14 @@ Physicist · Quant Researcher · Data Scientist
 
 ```
 IV_surface_analyzer/
-├── app.py                       # Streamlit application
+├── streamlit_app.py             # Streamlit application
+├── utils/
+│   ├── bs_model.py
+│   ├── fetch_data.py
+│   ├── visualizations.py
 ├── requirements.txt             # Python dependencies
 ├── images/
-│   ├── demo/                    # Screenshots
+│   ├── demo/                    # Screenshots from streamlit app
 │   ├── own/                     # Author image
 │   └── AAPL/                    # AAPL-specific plots
 └── README.md                    # Project documentation
@@ -75,7 +79,7 @@ To run locally:
 git clone https://github.com/Poulami-Nandi/IV_surface_analyzer.git
 cd IV_surface_analyzer
 pip install -r requirements.txt
-streamlit run app.py
+streamlit run streamlit_app.py
 ```
 
 ---
