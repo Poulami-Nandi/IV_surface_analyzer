@@ -44,9 +44,11 @@ with col1:
 
 # Right side: Image
 with col2:
-    st.image("https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/own/own_image.jpg",
-             caption="Dr. Poulami Nandi",
-             use_column_width=True)
+    st.image(
+        "https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/own/own_image.jpg",
+        caption="Dr. Poulami Nandi",
+        use_container_width=True
+    )
 
 # ----------------------------
 # Utility Functions
