@@ -41,7 +41,7 @@ This tool fetches **real-time options data** using `yfinance`, computes implied 
 
 ## 📷 Banner & Author Info
 
-![Profile](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/own/own_image.jpg)
+<img src="https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/own/own_image.jpg" alt="Profile" width="150"/>
 
 **👩‍🔬 Dr. Poulami Nandi**  
 Physicist · Quant Researcher · Data Scientist  
@@ -84,27 +84,27 @@ streamlit run app.py
 
 ### IV vs Strike (Volatility Smile)
 
-![IV vs Strike](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/iv_vs_strike.png)
+![IV vs Strike](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/IVvsStrikeAAPL.png)
 
 ### IV Heatmap for Selected Expiry
 
-![IV Heatmap](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/iv_heatmap.png)
+![IV Heatmap](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/IVheatmapAAPL.png)
 
 ### IV vs Time to Expiry
 
-![IV vs Time to Expiry](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/iv_vs_expiry.png)
+![IV vs Time to Expiry](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/IVdistributionAAPL.png)
 
 ### IV Boxplot by Expiry
 
-![IV Boxplot](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/iv_boxplot.png)
+![IV Boxplot](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/IVvsTimeAAPL.png)
 
 ### IV vs Moneyness (S/K)
 
-![IV vs Moneyness](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/iv_vs_moneyness.png)
+![IV vs Moneyness](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/IVvsMoneynessAAPL.png)
 
 ### IV Scatter Plot Colored by Time to Expiry
 
-![IV Scatter Plot](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/iv_scatter.png)
+![IV Scatter Plot](https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/AAPL/IVvsStrikeWithTimeToExpiryAAPL.png)
 
 ---
 
@@ -129,7 +129,9 @@ where:
 The terms \( d_1 \) and \( d_2 \) are calculated as:
 
 \[
-d_1 = rac{\ln\left(rac{S_0}{X}ight) + \left(r + rac{\sigma^2}{2}ight)T}{\sigma \sqrt{T}}, \quad d_2 = d_1 - \sigma \sqrt{T}
+d_1 = rac{\ln\left(rac{S_0}{X}
+ight) + \left(r + rac{\sigma^2}{2}
+ight)T}{\sigma \sqrt{T}}, \quad d_2 = d_1 - \sigma \sqrt{T}
 \]
 
 For put options:
