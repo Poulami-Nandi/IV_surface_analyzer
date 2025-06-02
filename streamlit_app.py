@@ -70,6 +70,8 @@ def implied_volatility(market_price, S, K, T, r, option_type='call'):
 
 def get_option_chain(ticker, max_expirations=3):
     stock = yf.Ticker(ticker)
+    if not stock.options:
+        raise ValueError(f"No option expiration dates available for ticker '{ticker}'.")
     expirations = stock.options[:max_expirations]
     all_options = []
     for date in expirations:
