@@ -112,59 +112,59 @@ streamlit run streamlit_app.py
 
 ---
 
-## 🧠 Mathematical Foundations
+## 📐 Mathematical Foundations
 
 ### Black-Scholes Model for Option Pricing
 
-The Black-Scholes formula is used to price European-style options and forms the basis for implied volatility calculation. For a call option, the Black-Scholes price \( C \) is given by:
+The Black-Scholes formula is used to price European-style options and forms the basis for implied volatility calculation.
 
-\[
-C = S_0 \cdot N(d_1) - X \cdot e^{-rT} \cdot N(d_2)
-\]
+For a **call option**, the Black-Scholes price `C` is:
 
-where:
+```
+C = S * N(d1) - X * exp(-r * T) * N(d2)
+```
 
-- \( S_0 \): Current price of the underlying asset
-- \( X \): Strike price of the option
-- \( T \): Time to maturity of the option (in years)
-- \( r \): Risk-free interest rate
-- \( N(\cdot) \): Cumulative distribution function of the standard normal distribution
+For a **put option**:
 
-The terms \( d_1 \) and \( d_2 \) are calculated as:
+```
+P = X * exp(-r * T) * N(-d2) - S * N(-d1)
+```
 
-\[
-d_1 = rac{\ln\left(rac{S_0}{X}
-ight) + \left(r + rac{\sigma^2}{2}
-ight)T}{\sigma \sqrt{T}}, \quad d_2 = d_1 - \sigma \sqrt{T}
-\]
+Where:
+- `S`: Current price of the underlying asset
+- `X`: Strike price of the option
+- `T`: Time to maturity (in years)
+- `r`: Risk-free interest rate
+- `N(.)`: Cumulative distribution function of the standard normal distribution
 
-For put options:
+The terms `d1` and `d2` are:
 
-\[
-P = X \cdot e^{-rT} \cdot N(-d_2) - S_0 \cdot N(-d_1)
-\]
+```
+d1 = [ ln(S/X) + (r + σ²/2) * T ] / (σ * sqrt(T))
+d2 = d1 - σ * sqrt(T)
+```
 
 ---
 
 ### Implied Volatility via Brent’s Method
 
-The implied volatility \( \sigma_{	ext{impl}} \) is the value of \( \sigma \) that satisfies:
+Implied volatility `σ_impl` is the value of `σ` such that:
 
-\[
-C_{	ext{obs}} = C_{	ext{BS}}(S_0, X, T, r, \sigma)
-\]
+```
+Observed_Price = BlackScholes(S, X, T, r, σ_impl)
+```
 
-We solve this using the **Brent root-finding method** to find \( \sigma \) such that the difference between observed and theoretical price is zero.
+We solve this using the **Brent root-finding method** to find the volatility that equates theoretical and observed prices.
 
 ---
 
-### Vega (Sensitivity)
+### Vega (Sensitivity to Volatility)
 
-\[
-	ext{Vega} = S_0 \cdot \sqrt{T} \cdot rac{1}{\sqrt{2\pi}} e^{-rac{d_1^2}{2}}
-\]
+```
+Vega = S * sqrt(T) * N'(d1)
+```
 
-This represents the sensitivity of the option price to changes in volatility.
+Where `N'(d1)` is the standard normal PDF. Vega shows how much the option price changes with volatility.
 
 ---
 
