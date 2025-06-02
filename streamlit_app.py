@@ -18,24 +18,35 @@ st.markdown(
     "A live dashboard to explore volatility smiles, skews, and term structures for stock options using Black-Scholes IV models."
 )
 
-st.markdown("**👤 Created by:** Dr. Poulami Nandi  \n"
-            "Physicist · Quant Researcher · Data Scientist")
+# Create two columns
+col1, col2 = st.columns([3, 1])  # Left wider for text, right for image
 
-st.markdown("**🏛️ Affiliations:**  \n"
-            "[University of Pennsylvania](https://live-sas-physics.pantheon.sas.upenn.edu/people/poulami-nandi) · "
-            "[IIT Kanpur](https://www.iitk.ac.in/) · "
-            "[IIT Gandhinagar](https://www.usief.org.in/home-institution-india/indian-institute-of-technology-gandhinagar/) · "
-            "[UC Davis](https://www.ucdavis.edu/) · "
-            "[TU Wien](http://www.itp.tuwien.ac.at/CPT/index.htm?date=201838&cats=xbrbknmztwd)")
+# 🧾 Left side: Bio and Links
+with col1:
+    st.markdown("**👤 Created by:** Dr. Poulami Nandi  \n"
+                "Physicist · Quant Researcher · Data Scientist")
 
-st.markdown("**📧 Email:**  \n"
-            "[nandi.poulami91@gmail.com](mailto:nandi.poulami91@gmail.com), "
-            "[pnandi@sas.upenn.edu](mailto:pnandi@sas.upenn.edu)")
+    st.markdown("**🏛️ Affiliations:**  \n"
+                "[University of Pennsylvania](https://live-sas-physics.pantheon.sas.upenn.edu/people/poulami-nandi) · "
+                "[IIT Kanpur](https://www.iitk.ac.in/) · "
+                "[IIT Gandhinagar](https://www.usief.org.in/home-institution-india/indian-institute-of-technology-gandhinagar/) · "
+                "[UC Davis](https://www.ucdavis.edu/) · "
+                "[TU Wien](http://www.itp.tuwien.ac.at/CPT/index.htm?date=201838&cats=xbrbknmztwd)")
 
-st.markdown("**🔗 Links:**  \n"
-            "[LinkedIn](https://www.linkedin.com/in/poulami-nandi-a8a12917b/)  |  "
-            "[GitHub](https://github.com/Poulami-Nandi)  |  "
-            "[Google Scholar](https://scholar.google.co.in/citations?user=bOYJeAYAAAAJ&hl=en)")
+    st.markdown("**📧 Email:**  \n"
+                "[nandi.poulami91@gmail.com](mailto:nandi.poulami91@gmail.com), "
+                "[pnandi@sas.upenn.edu](mailto:pnandi@sas.upenn.edu)")
+
+    st.markdown("**🔗 Links:**  \n"
+                "[LinkedIn](https://www.linkedin.com/in/poulami-nandi-a8a12917b/)  |  "
+                "[GitHub](https://github.com/Poulami-Nandi)  |  "
+                "[Google Scholar](https://scholar.google.co.in/citations?user=bOYJeAYAAAAJ&hl=en)")
+
+# Right side: Image
+with col2:
+    st.image("https://github.com/Poulami-Nandi/IV_surface_analyzer/raw/main/images/own/own_image.jpg",
+             caption="Dr. Poulami Nandi",
+             use_column_width=True)
 
 # ----------------------------
 # Utility Functions
