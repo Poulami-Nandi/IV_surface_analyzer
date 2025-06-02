@@ -18,20 +18,21 @@ st.markdown(
     "A live dashboard to explore volatility smiles, skews, and term structures for stock options using Black-Scholes IV models."
 )
 
-col1, col2 = st.columns([1, 3])
+col1= st.columns([1, 2])
 
 with col1:
-    st.image("https://img.icons8.com/color/96/graph.png", width=64)
-
-with col2:
     st.markdown("**👤 Created by:** Dr. Poulami Nandi  \n"
                 "Physicist · Quant Researcher · Data Scientist")
 
     st.markdown("**🏛️ Affiliations:**  \n"
-                "University of Pennsylvania · IIT Kanpur · IIT Gandhinagar · UC Davis · TU Wien")
+                "[University of Pennsylvania](https://live-sas-physics.pantheon.sas.upenn.edu/people/poulami-nandi) · "
+                "[IIT Kanpur](https://www.iitk.ac.in/) · "
+                "[IIT Gandhinagar](https://www.usief.org.in/home-institution-india/indian-institute-of-technology-gandhinagar/) · "
+                "[UC Davis](https://www.ucdavis.edu/) · "
+                "[TU Wien](http://www.itp.tuwien.ac.at/CPT/index.htm?date=201838&cats=xbrbknmztwd)")
 
     st.markdown("**📧 Email:**  \n"
-                "[nandi.poulami91@gmail.com](mailto:nandi.poulami91@gmail.com)  \n"
+                "[nandi.poulami91@gmail.com](mailto:nandi.poulami91@gmail.com), "
                 "[pnandi@sas.upenn.edu](mailto:pnandi@sas.upenn.edu)")
 
     st.markdown("**🔗 Links:**  \n"
